@@ -1,0 +1,1 @@
+The diff file in the root needs to applied to depthai-python's [CMakeList.txt](extern/depthai-python/CMakeLists.txt) then everything should work.
