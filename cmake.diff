@@ -1,0 +1,33 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0f58e9e4..bad16c13 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -87,7 +87,7 @@ endif()
+ find_package(pybind11 CONFIG REQUIRED)
+ 
+ # Add files for python module
+-pybind11_add_module(${TARGET_NAME}
++pybind11_add_module(${TARGET_NAME} STATIC
+     src/py_bindings.cpp
+     src/XLinkBindings.cpp
+     src/DeviceBindings.cpp
+@@ -247,7 +247,7 @@ else()
+ endif()
+ 
+ # Add include directory
+-target_include_directories(${TARGET_NAME} PRIVATE src ${DOCSTRINGS_INCLUDE_PLACEHOLDER_DIR})
++target_include_directories(${TARGET_NAME} PUBLIC src ${DOCSTRINGS_INCLUDE_PLACEHOLDER_DIR})
+ 
+ # Link with libraries
+ target_link_libraries(${TARGET_NAME}
+@@ -299,6 +299,10 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} "-c" "${version_command}"
+ 
+ 
+ string(TIMESTAMP BUILD_DATETIME "%Y-%m-%d %H:%M:%S +0000" UTC)
++set(DEPTHAI_PYTHON_VERSION ${DEPTHAI_PYTHON_VERSION} CACHE STRING "Python version for depthai" FORCE)
++set(BUILD_COMMIT ${BUILD_COMMIT} CACHE STRING "" FORCE)
++set(BUILD_COMMIT_DATETIME ${BUILD_COMMIT_DATETIME} CACHE STRING "" FORCE)
++set(BUILD_DATETIME ${BUILD_DATETIME} CACHE STRING "" FORCE)
+ target_compile_definitions(${TARGET_NAME}
+     PRIVATE
+         DEPTHAI_PYTHON_VERSION="${DEPTHAI_PYTHON_VERSION}"
