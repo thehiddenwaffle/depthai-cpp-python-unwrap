@@ -1,0 +1,8 @@
+[submodule "extern/pybind11"]
+	path = extern/pybind11
+	url = https://github.com/pybind/pybind11
+	branch = stable
+[submodule "extern/depthai-python"]
+	path = extern/depthai-python
+	url = https://github.com/luxonis/depthai-python.git
+	branch = main
