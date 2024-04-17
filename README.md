@@ -1,1 +1,1 @@
-The diff file in the root needs to applied to depthai-python's [CMakeList.txt](extern/depthai-python/CMakeLists.txt) then everything should work.
+The diff file in the root needs to be applied to depthai-python's [CMakeList.txt](extern/depthai-python/CMakeLists.txt) and [py_bindings.cpp](extern/depthai-python/src/py_bindings.cpp) then everything should work.
