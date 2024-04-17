@@ -3,12 +3,6 @@ cmake_minimum_required(VERSION 3.4)
 set(CMAKE_CXX_STANDARD 17)
 set(PYTHON_EXECUTABLE /usr/bin/python3.11)
 set(TARGET_NAME device_unwrap)
-# Specify path separator
-set(SYS_PATH_SEPARATOR ";")
-if(UNIX)
-    set(SYS_PATH_SEPARATOR ":")
-endif()
-set(PYTHONPATH $ENV{PATH}${SYS_PATH_SEPARATOR}${CMAKE_CURRENT_LIST_DIR})
 
 add_subdirectory(extern)
 
