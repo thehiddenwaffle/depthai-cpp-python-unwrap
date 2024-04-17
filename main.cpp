@@ -3,6 +3,13 @@
 
 int main() {
     std::cout << "Starting pybind" << std::endl;
+
+    std::string filePath = __FILE__;
+    std::string dirPath = filePath.substr(0, filePath.find_last_of("/\\"));
+    std::string pythonPath("PYTHONPATH=");
+    pythonPath.append(dirPath);
+    putenv(const_cast<char *>(pythonPath.c_str()));
+
     py::scoped_interpreter guard{}; // start interpreter, dies when out of scope
 
     auto dai = py::module_::import("depthai_emb");
@@ -16,7 +23,7 @@ int main() {
     py::object result = attach_pipeline(py_pipeline);
     auto *back_in_cpp = result.cast<dai::Pipeline *>();
     const dai::Pipeline firm_obj = back_in_cpp->clone();
-    std::vector<std::shared_ptr<const Node>> nodes = firm_obj.getAllNodes();
+    std::vector<std::shared_ptr<const dai::Node>> nodes = firm_obj.getAllNodes();
     for(auto node : nodes){
         std::string name = node.get()->getName();
     }

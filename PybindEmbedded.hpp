@@ -122,7 +122,8 @@ namespace py = pybind11;
 //    }
 //}
 
-// Instead of the above, apply the py_bindings.cpp patch
+// Instead of the above, apply the py_bindings.cpp patch extern__depthai-python__src__py_bindings.cpp.diff
+// This was renamed from depthai to depthai_emb so that the naming doesn't conflict with py_bindings.cpp
 PYBIND11_EMBEDDED_MODULE(depthai_emb, m){
     doImplement(m);
 }
