@@ -31,7 +31,7 @@ namespace py = pybind11;
 // This is just directly stolen from https://github.com/luxonis/depthai-python/blob/1ea482ac3d6ba39ebc6fd86cc8655701d15a90ad/src/py_bindings.cpp#L32
 // But with PYBIND11_MODULE changed to PYBIND11_EMBEDDED_MODULE so that the bindings are actually visible within this project.
 PYBIND11_EMBEDDED_MODULE(depthai, m){
-// Depthai python version consists of: (depthai-core).(bindings revision)[+bindings hash]
+    // Depthai python version consists of: (depthai-core).(bindings revision)[+bindings hash]
     m.attr("__version__") = DEPTHAI_PYTHON_VERSION;
     m.attr("__commit__") = DEPTHAI_PYTHON_COMMIT_HASH;
     m.attr("__commit_datetime__") = DEPTHAI_PYTHON_COMMIT_DATETIME;
@@ -142,8 +142,6 @@ int main() {
     test->setData(values);
     in->send(*test);
     std::vector<std::uint8_t> output = out->get().get()->getRaw().get()->data;
-    int i = 0;
-
     assert(values == output);
     return 0;
 }
