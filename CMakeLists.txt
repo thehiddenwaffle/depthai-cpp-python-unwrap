@@ -15,7 +15,9 @@ add_subdirectory(extern)
 project(device_unwrap)
 find_package(pybind11 CONFIG REQUIRED)
 
-add_executable(${TARGET_NAME} main.cpp)
+add_executable(${TARGET_NAME} main.cpp
+        PybindEmbedded.hpp
+)
 
 target_compile_definitions(${TARGET_NAME}
         PUBLIC
