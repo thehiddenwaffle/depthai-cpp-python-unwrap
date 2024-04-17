@@ -5,7 +5,7 @@ int main() {
     std::cout << "Starting pybind" << std::endl;
     py::scoped_interpreter guard{}; // start interpreter, dies when out of scope
 
-    auto dai = py::module_::import("depthai");
+    auto dai = py::module_::import("depthai_emb");
     py::function attach_pipeline =
             py::reinterpret_borrow<py::function>(   // cast from 'object' to 'function - use `borrow` (copy) or `steal` (move)
                     py::module_::import("pipeline").attr("build")

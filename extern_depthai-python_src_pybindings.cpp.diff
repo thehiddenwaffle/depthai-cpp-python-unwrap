@@ -1,0 +1,25 @@
+diff --git a/src/py_bindings.cpp b/src/py_bindings.cpp
+index 864704a7..06a33842 100644
+--- a/src/py_bindings.cpp
++++ b/src/py_bindings.cpp
+@@ -29,9 +29,7 @@
+ #include "log/LogBindings.hpp"
+ #include "VersionBindings.hpp"
+ 
+-PYBIND11_MODULE(depthai, m)
+-{
+-
++static void doImplement(pybind11::module_ &m){
+     // Depthai python version consists of: (depthai-core).(bindings revision)[+bindings hash]
+     m.attr("__version__") = DEPTHAI_PYTHON_VERSION;
+     m.attr("__commit__") = DEPTHAI_PYTHON_COMMIT_HASH;
+@@ -112,5 +110,9 @@ PYBIND11_MODULE(depthai, m)
+     } catch (const std::exception&) {
+         // ignore, will be initialized later on if possible
+     }
++}
+ 
++PYBIND11_MODULE(depthai, m)
++{
++    doImplement(m);
+ }
