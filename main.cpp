@@ -19,17 +19,15 @@ int main() {
                     py::module_::import("pipeline").attr("build")
             );
 
-    auto dev = dai.attr("Pipeline");
-    auto py_pipeline = dev();
+    auto py_pipeline = dai.attr("Pipeline")();
     py::object result = attach_pipeline(py_pipeline);
-    auto *back_in_cpp = result.cast<dai::Pipeline *>();
-    const dai::Pipeline firm_obj = back_in_cpp->clone();
-    std::vector<std::shared_ptr<const dai::Node>> nodes = firm_obj.getAllNodes();
+    auto *pipeline = result.cast<dai::Pipeline *>();
+    std::vector<std::shared_ptr<dai::Node>> nodes = pipeline->getAllNodes();
     for(auto node : nodes){
         std::string name = node.get()->getName();
     }
 
-    auto* cls = new dai::Device(firm_obj);
+    auto* cls = new dai::Device(*pipeline);
     std::shared_ptr<dai::DataInputQueue> in = cls->getInputQueue("my_python_input");
     std::shared_ptr<dai::DataOutputQueue> out = cls->getOutputQueue("my_python_output");
     auto* test = new dai::Buffer();
